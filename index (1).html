@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шайка Разбитого Корабля | Уроки для малышей</title>
+    <style>
+        :root {
+            --bg-deep: #061422;
+            --bg-card: #0b2238;
+            --bg-bot: #081a2b;
+            --accent-light: #bae6fd;
+            --accent-sky: #38bdf8;
+            --accent-danger: #f87171;
+            --text-main: #f0f9ff;
+            --text-muted: #93c5fd;
+            --border-soft: #1e3a5f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image: radial-gradient(circle at 50% 0%, #0f3454 0%, var(--bg-deep) 75%);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 55px 20px 40px;
+            border-bottom: 1px solid var(--border-soft);
+            background: linear-gradient(180deg, rgba(6, 20, 34, 0.9) 0%, rgba(11, 34, 56, 0.4) 100%);
+        }
+
+        .badge {
+            display: inline-block;
+            color: var(--accent-light);
+            background-color: rgba(56, 189, 248, 0.12);
+            border: 1px solid var(--accent-sky);
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2.3rem;
+            color: var(--accent-light);
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 28px;
+            font-size: 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--accent-light);
+            background-color: var(--bg-card);
+            border: 1px solid var(--accent-sky);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-light);
+            color: var(--bg-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(186, 230, 253, 0.35);
+        }
+
+        main {
+            max-width: 920px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .lesson-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            border-top: 4px solid var(--accent-sky);
+            border-radius: 14px;
+            padding: 36px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+        }
+
+        .lesson-header {
+            text-align: center;
+            border: 2px solid var(--accent-light);
+            background-color: rgba(6, 20, 34, 0.55);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .lesson-header h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.55rem;
+            color: var(--accent-light);
+            letter-spacing: 1px;
+        }
+
+        .lesson-header p {
+            color: var(--accent-sky);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        .lesson-intro {
+            margin-bottom: 24px;
+            color: var(--text-main);
+        }
+
+        .section-divider {
+            text-align: center;
+            border: 2px dashed var(--accent-sky);
+            background-color: rgba(56, 189, 248, 0.08);
+            color: var(--accent-light);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 30px 0 22px;
+        }
+
+        .location-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .location-item {
+            background-color: rgba(6, 20, 34, 0.4);
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-sky);
+        }
+
+        .location-item strong {
+            color: var(--accent-light);
+        }
+
+        .forbidden {
+            color: var(--accent-danger);
+            font-weight: 700;
+        }
+
+        .bot-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .bot-card {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            background-color: var(--bg-bot);
+            border: 1px solid var(--border-soft);
+            border-radius: 12px;
+            padding: 18px 22px;
+            transition: border-color 0.2s ease;
+        }
+
+        .bot-card:hover {
+            border-color: var(--accent-light);
+        }
+
+        .bot-card img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            background-color: rgba(186, 230, 253, 0.06);
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            padding: 6px;
+            flex-shrink: 0;
+        }
+
+        .bot-info strong {
+            color: var(--accent-light);
+            font-size: 1.05rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-soft);
+            margin-top: 50px;
+        }
+
+        @media (max-width: 650px) {
+            h1 { font-size: 1.8rem; }
+            .lesson-card { padding: 22px 16px; }
+            .bot-card { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="badge">⚓ Шайка Разбитого Корабля</div>
+        <h1>[ШРК] Уроки для малышей</h1>
+        <p class="subtitle">Бортовой справочник новобранца. Изучи все четыре главы, чтобы ориентироваться на корабле и за его пределами.</p>
+        
+        <nav>
+            <a href="#lesson-1">⚓ Урок 1: Лагерь и боты</a>
+            <a href="#lesson-2">🧭 Урок 2</a>
+            <a href="#lesson-3">🗺️ Урок 3</a>
+            <a href="#lesson-4">🦈 Урок 4</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- УРОК 1 -->
+        <section id="lesson-1" class="lesson-card">
+            <div class="lesson-header">
+                <h2>ШАЙКА РАЗБИТОГО КОРАБЛЯ</h2>
+                <p>Лагерная территория и боты на ней</p>
+            </div>
+
+            <p class="lesson-intro">
+                В этом уроке собрана основная информация о лагерной территории шайки и ботах. Здесь представлены особенности лагерных локаций, их назначение, правила посещения, а также информация о ботах, их функциях и местонахождении.
+            </p>
+
+            <div class="section-divider">Территория</div>
+
+            <div class="location-list">
+                <div class="location-item"><strong>Верхняя палуба</strong> — главная лагерная локация. Чат объединён с Трюмом.</div>
+                <div class="location-item"><strong>Трюм</strong> — место для сбора деятельности юнг+. Также здесь объявляют о предстоящих сборах сказок, лекций и игр. Чат объединён с Верхней палубой.</div>
+                <div class="location-item"><strong>Шлюпки</strong> — локация без особенностей. Имеет переходы сам в себя для удобного прокачивания активности и переход в правую и левую шлюпки.</div>
+                <div class="location-item"><strong>Капитанский мостик</strong> — место проведения собраний по понедельникам, средам, пятницам и воскресеньям в 19:00.</div>
+                <div class="location-item"><strong>Корма</strong> — локация, предназначенная для проведения грушеваний.</div>
+                <div class="location-item"><strong>Камбуз</strong> — куча с дичью. После исполнения 3 лун его можно утопить там, до — у любой королевы с помощью молока. Кости от съеденной дичи следует складывать в левый нижний угол либо смешивать, либо отдать любому коту Продовольственной сферы.</div>
+                <div class="location-item"><strong>Водохранилище</strong> — питьевая локация.</div>
+                <div class="location-item"><strong>Палубная рубка</strong> — локация без особенностей, служит быстрым посредником между локациями.</div>
+                <div class="location-item"><strong>Большая каюта</strong> — локация, где игроки ожидают изгнания или открытия перехода на нейтральные земли. Заходить просто так <span class="forbidden">запрещено</span>, исключением является наличие разрешения от Верховной сферы или проводника.</div>
+                <div class="location-item"><strong>Сундук</strong> — хранилище предметов. Сюда можно сдать свои предметы на хранение или ресурсы в казну. За Сундук отвечают сундучники, список которых есть в Главном блоге. <span class="forbidden">Запрещено</span> посещать дополнительные Сундуки (№1–3) без разрешения ответственного за Сундук.</div>
+                <div class="location-item"><strong>Душистая кладовая</strong> — служит хранилищем трав шайки. Заходить просто так, без разрешения Верховной сферы или судовых врачей, <span class="forbidden">запрещено</span>. В качестве исключения заходить можно при относе целебных ресурсов или мышей с докторских мероприятий.</div>
+                <div class="location-item"><strong>Пищащий уголок</strong> — локация с охотой на мышей для Врачевательной сферы. Уходить в статус [Спит] <span class="forbidden">запрещено</span>.</div>
+                <div class="location-item"><strong>Пологий берег</strong> — главная локация для малышей. Есть переход сам в себя для прокачивания активности и уникальная детская охота, подробности о которой можно найти в блоге Летучих Рыб. Служит местом для проведения лекций и сказок и объявлений о сборах лагерных патрулей. Чат объединён с Отдалённым пологим берегом.</div>
+                <div class="location-item"><strong>Отдалённый пологий берег</strong> — имеет переход сам в себя и охоту на бабочек, также служит местом для сбора и проведения игр отрядом Летучих рыб. Чат объединён с Пологим берегом.</div>
+                <div class="location-item"><strong>Прибрежный бассейн</strong> — плавательная локация. Имеет 0 уровень вод, поэтому утонуть на ней невозможно и является безопасной.</div>
+                <div class="location-item"><strong>Стеклянный пляж</strong> — локация с активной охотой на бабочку.</div>
+                <div class="location-item"><strong>Скрытый лаз</strong> — место сбора лагерных патрулей.</div>
+                <div class="location-item"><strong>Подвал</strong> — грязное место. Есть переход в Дыру в корабле, начало внелагерной территории. Малышам туда заходить <span class="forbidden">запрещено</span>.</div>
+                <div class="location-item"><strong>Каюта кока и боцмана</strong> — локация для бега. Уходить в статус [Спит] <span class="forbidden">запрещено</span>.</div>
+                <div class="location-item"><strong>Каюты малышей, морских волков, матросов и юнг</strong> — спальные локации для соответствующих должностей.</div>
+                <div class="location-item"><strong>Тихое место, Сонное ущелье, Сквозное жерло, Норка под кораблём, Сквозящий проход</strong> — локации без особенностей.</div>
+            </div>
+
+            <div class="section-divider">Боты</div>
+
+            <p class="lesson-intro">Данный раздел расскажет о ботах шайки, находящихся на лагерной территории.</p>
+
+            <div class="bot-list">
+                <div class="bot-card">
+                    <img src="stid.png" alt="Галантный Стид">
+                    <div class="bot-info">
+                        <strong>Галантный Стид</strong> — Хранитель праздничных блогов. Во вкладке «Блоги игрока» можно найти поздравительные блоги для членов шайки и блоги о проводимых племенных мероприятиях. Также он может принять заказ для Виртуозов, ответить на вопрос о размере личной медали, обработать остальные запросы, если он указан, как ответственный за них. Находится на локации «Капитанский мостик».
+                    </div>
+                </div>
+
+                <div class="bot-card">
+                    <img src="razboynik.png" alt="Морской Разбойник">
+                    <div class="bot-info">
+                        <strong>Морской Разбойник</strong> — Хранитель племенных блогов. В его «О себе» можно найти список всех актуальных блогов шайки. Также он может сменить имя, посвятить по личным сообщениям, принять и изгнать из шайки, выдать разрешение на посещение шайки, выдать прилагательные, уникальные и личные должности, обработать остальные запросы, если он указан, как отвечающий за них. С каждым из перечисленных запросов необходимо обратиться к нему в личные сообщения. Находится на локации «Верхняя палуба».
+                    </div>
+                </div>
+
+                <div class="bot-card">
+                    <img src="billy.png" alt="Забияка-Билли">
+                    <div class="bot-info">
+                        <strong>Забияка-Билли</strong> — Бот, с закреплёнными заданиями для малышей, выполнение которых приносит котятам монетки. Их перечень можно найти в его «О себе». Все задания можно выполнить только один раз, активны они неделю и после смены неактуальны; за каждое из них можно получить до 25/50 монеток в зависимости от сложности. Задания бывают разные: социальные, связанные с игровой, лорные, художественные и писательские. Находится на локации «Пологий берег».
+                    </div>
+                </div>
+
+                <div class="bot-card">
+                    <img src="pelagus.png" alt="Пелагус и Янтарная">
+                    <div class="bot-info">
+                        <strong>Пелагус и Янтарная</strong> — Боты-родители. Одинокие кошки могут завести котят с Пелагусом, а коты набить проценты пары с Янтарной, чтобы принять в семью. Находятся на локации «Каюта малышей».
+                    </div>
+                </div>
+
+                <div class="bot-card">
+                    <img src="myshonok.png" alt="Растрёпанный Мышонок">
+                    <div class="bot-info">
+                        <strong>Растрёпанный Мышонок</strong> — Бот-хранитель целительских ресурсов. Находится на локации «Душистая кладовая».
+                    </div>
+                </div>
+
+                <div class="bot-card">
+                    <img src="larisa.png" alt="Крыса-Лариса">
+                    <div class="bot-info">
+                        <strong>Крыса-Лариса</strong> — Бот-хранитель предметов. Может принять на хранение уникальные предметы, баффы и ВТшки, а также перенести предметы из других ботов. Находится на локации «Каюта морских волков».
+                    </div>
+                </div>
+
+                <div class="bot-card">
+                    <img src="babochka.png" alt="Красивая бабочка">
+                    <div class="bot-info">
+                        <strong>Красивая бабочка</strong> — Бот активной охоты, при победе даёт 1 БУ вплоть до начала 5-го уровня. Находится на локации «Стеклянный пляж».
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- УРОК 2 -->
+        <section id="lesson-2" class="lesson-card">
+            <div class="lesson-header">
+                <h2>УРОК 2</h2>
+                <p>Вторая тема</p>
+            </div>
+            <p class="lesson-intro">Здесь будет содержание второго урока.</p>
+        </section>
+
+        <!-- УРОК 3 -->
+        <section id="lesson-3" class="lesson-card">
+            <div class="lesson-header">
+                <h2>УРОК 3</h2>
+                <p>Третья тема</p>
+            </div>
+            <p class="lesson-intro">Здесь будет содержание третьего урока.</p>
+        </section>
+
+        <!-- УРОК 4 -->
+        <section id="lesson-4" class="lesson-card">
+            <div class="lesson-header">
+                <h2>УРОК 4</h2>
+                <p>Четвёртая тема</p>
+            </div>
+            <p class="lesson-intro">Здесь будет содержание четвёртого урока.</p>
+        </section>
+    </main>
+
+    <footer>
+        ⚓ Шайка Разбитого Корабля • Уроки для малышей (CatWar)
+    </footer>
+
+</body>
+</html>
